@@ -1,0 +1,279 @@
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+<title>Formulaire de Candidature Professionnel</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9ed 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#application-form {
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  background-color: #DAF0DD;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+#application-form h2 {
+  color: #064C1C;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+}
+
+#application-form h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #5BA8FF;
+  border-radius: 2px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #064C1C;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.form-group i {
+  margin-right: 8px;
+  color: #5BA8FF;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #5BA8FF;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #F68634;
+  box-shadow: 0 0 0 3px rgba(246, 134, 52, 0.2);
+}
+
+.form-group input[type="file"] {
+  padding: 8px;
+  background: white;
+  cursor: pointer;
+}
+
+.fee-notice {
+  background: rgba(235, 78, 30, 0.1);
+  color: #EB4E1E;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-weight: 500;
+  text-align: center;
+}
+
+.cta-button {
+  width: 100%;
+  background-color: #F68634;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.cta-button:hover {
+  background-color: #EB4E1E;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(235, 78, 30, 0.3);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.error {
+  border-color: #EB4E1E !important;
+  animation: shake 0.3s ease-in-out;
+}
+
+@media (max-width: 600px) {
+  #application-form {
+    padding: 20px;
+  }
+  
+  #application-form h2 {
+    font-size: 1.5rem;
+  }
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<section id="application-form">
+  <h2>Formulaire de Candidature</h2>
+  
+  <div class="fee-notice">
+    <i class="fas fa-info-circle"></i>
+    Frais de dépôt de dossiers: <strong>30$</strong>
+  </div>
+  
+  <form id="jobApplication"  method="POST">
+    <div class="form-group">
+      <label for="first-name"><i class="fas fa-user"></i> Prénom:</label>
+      <input type="text" id="first-name" name="first_name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="last-name"><i class="fas fa-user"></i> Post-nom:</label>
+      <input type="text" id="last-name" name="last_name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="profession"><i class="fas fa-briefcase"></i> Domaine de profession:</label>
+      <input type="text" id="profession" name="profession" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="cv"><i class="fas fa-file-upload"></i> Téléchargez votre CV (PDF uniquement):</label>
+      <input type="file" id="cv" name="cv" accept=".pdf" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="num-docs"><i class="fas fa-file-alt"></i> Autres documents (nombre):</label>
+      <input type="number" id="num-docs" name="num_docs" min="0" max="5" value="0" required>
+    </div>
+    
+    <div id="additional-docs"></div>
+    
+    <button type="submit" class="cta-button">
+      <i class="fas fa-paper-plane"></i> Soumettre la Candidature
+    </button>
+  </form>
+</section>
+
+<script>
+document.getElementById('num-docs').addEventListener('change', function(e) {
+  const container = document.getElementById('additional-docs');
+  const numDocs = parseInt(this.value);
+  
+  container.innerHTML = '';
+  
+  for(let i = 0; i < numDocs; i++) {
+    const docGroup = document.createElement('div');
+    docGroup.className = 'form-group';
+    
+    const label = document.createElement('label');
+    label.innerHTML = `<i class="fas fa-file"></i> Document supplémentaire ${i + 1}:`;
+    label.htmlFor = `additional-doc-${i}`;
+    
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.id = `additional-doc-${i}`;
+    input.name = `additional_doc_${i}`;
+    input.required = true;
+    input.accept = '.pdf,.doc,.docx';
+    
+    docGroup.appendChild(label);
+    docGroup.appendChild(input);
+    container.appendChild(docGroup);
+  }
+});
+
+document.getElementById('jobApplication').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Collect payment details from the form
+        // const name = document.getElementById('name').value;
+        // const surname = document.getElementById('surname').value;
+        // const email = document.getElementById('email').value;
+        // const phone = document.getElementById('phone').value;
+        // const amount = document.getElementById('amount').value;
+        // const mobileMoneyService = document.getElementById('channels').value;
+        // const currency = document.getElementById('currency').value;
+        // const address = document.getElementById('address').value;
+        // const city = document.getElementById('city').value;
+        // const country = document.getElementById('country').value;
+        // const state = document.getElementById('state').value;
+        // const zipCode = document.getElementById('zip').value;
+
+        
+        // CinetPay API Integration
+        CinetPay.setConfig({
+            apikey: '174642520866f4225499b325.33508508',  // Use your actual CinetPay API Key
+            site_id: '5880530', // Use your actual CinetPay Site ID
+            notify_url: 'https://websim.creationengine.blog/mirror-form/',
+            close_after_response: true,
+            mode: 'PRODUCTION'
+        });
+
+        CinetPay.getCheckout({
+            transaction_id: Math.floor(Math.random() * 100000000).toString(),
+            amount: 30,
+            currency: 'USD',
+            channels: 'MOBILE_MONEY',
+            description: 'Payment for services',
+            customer_name:"Joe",//Le nom du client
+                customer_surname:"Down",//Le prenom du client
+                customer_email: "down@test.com",//l'email du client
+                customer_phone_number: "088767611",//l'email du client
+                customer_address : "BP 0024",//addresse du client
+                customer_city: "Antananarivo",// La ville du client
+                customer_country : "CM",// le code ISO du pays
+                customer_state : "CM",// le code ISO l'état
+                customer_zip_code : "06510",
+        });
+
+        CinetPay.waitResponse(function(data) {
+            if (data.status == "REFUSED") {
+                alert("Your payment failed.");
+                window.location.reload();
+            } else if (data.status == "ACCEPTED") {
+                alert("Payment successful!");
+                window.location.reload();
+            }
+        });
+
+        CinetPay.onError(function(data) {
+            console.error("Error: ", data);
+        });
+    });
+</script>
+
+</body></html>
