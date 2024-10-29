@@ -1,0 +1,836 @@
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groupe Sage | Expert en recrutement et sous-traitance multi-sectoriel</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+  :root {
+    --green-light: #DAF0DD;
+    --green-dark: #064C1C;
+    --orange: #F68634;
+    --red: #EB4E1E;
+    --yellow: #FBC02D;
+    --blue: #1E88E5;
+    --text-glow-orange: 0 0 10px rgba(246, 134, 52, 0.5);
+    --box-glow-orange: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 5px 15px rgba(246, 134, 52, 0.5);
+    --box-glow-red: 0 0 15px rgba(255, 94, 94, 0.5);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter Tight', sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, var(--green-light), white);
+    color: var(--green-dark);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Header Styles */
+  header {
+    background: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+  }
+  
+  .logo {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--orange);
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(246, 134, 52, .3);
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: var(--orange);
+  }
+  
+  /* Hamburger Menu Icon */
+  .menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+    color: var(--green-dark);
+  }
+  
+  /* Mobile Navigation */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100%;
+    background: var(--green-dark);
+    padding-top: 50px;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+    z-index: 1001;
+  }
+  
+  .mobile-nav.active {
+    transform: translateX(0);
+    display: block;
+  }
+  
+  .mobile-nav .close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .mobile-nav ul {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  
+  .mobile-nav ul li {
+    margin: 15px 0;
+  }
+  
+  .mobile-nav a {
+    color: white;
+    font-size: 18px;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    padding-top: 120px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(6,76,28,0.8), rgba(246,134,52,0.3));
+    z-index: 1;
+  }
+  
+  .hero .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 900;
+    text-shadow: var(--text-glow-orange);
+    color: var(--orange);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  
+  .hero p {
+    font-size: 24px;
+    color: var(--yellow);
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: var(--box-glow-orange);
+  }
+  
+  .cta-button:hover {
+    background: var(--red);
+    box-shadow: var(--box-glow-red);
+  }
+  
+  /* Fixed CTA Button */
+  #fixed-cta {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--orange);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: var(--box-glow-orange);
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  #fixed-cta:hover {
+    background-color: var(--red);
+    box-shadow: var(--box-glow-red);
+    transform: translateY(-2px);
+  }
+  
+  /* Services Section */
+  .services {
+    padding: 100px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+  
+  .service-card {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  
+  .service-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 20px;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--orange);
+    box-shadow: var(--box-glow-orange);
+  }
+  
+  .service-card i {
+    font-size: 40px;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+  
+  /* Industries Section */
+  .industries {
+    padding: 100px 0;
+    background: var(--green-dark);
+    color: white;
+  }
+  
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+  }
+  
+  .industry-item {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .industry-item i {
+    font-size: 36px;
+    color: var(--yellow);
+    margin-bottom: 15px;
+  }
+  
+  /* Stats Section */
+  .stats {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--orange), var(--red));
+    color: white;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+  }
+  
+  .stat-item h3 {
+    font-size: 48px;
+    color: var(--yellow);
+    margin-bottom: 10px;
+  }
+  
+  /* Testimonials Section */
+  .testimonials {
+    background: var(--green-light);
+    padding: 100px 0;
+  }
+  
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .testimonial-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .testimonial-card i {
+    color: var(--orange);
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .client {
+    margin-top: 15px;
+  }
+  
+  /* CTA Section */
+  .cta {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--green-light), white);
+  }
+  
+  .cta h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: var(--green-dark);
+  }
+  
+  /* About Us Section */
+  .about-us {
+    padding: 100px 0;
+    background: linear-gradient(135deg, white, var(--green-light));
+  }
+  
+  .about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .about-left {
+    flex: 1;
+  }
+  
+  .about-left p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--green-dark);
+    margin-bottom: 30px;
+  }
+  
+  .about-right {
+    flex: 1;
+  }
+  
+  .rounded-image {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+    }
+  }
+  
+  /* Contact Form Section */
+  .contact-form {
+    padding: 100px 0;
+    background: var(--green-light);
+  }
+  
+  .contact-form form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--orange);
+    box-shadow: 0 0 5px rgba(246, 134, 52, 0.3);
+  }
+  
+  /* Footer */
+  footer {
+    background: var(--green-dark);
+    color: white;
+    padding: 60px 0 30px;
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .footer-column h4 {
+    color: var(--yellow);
+    margin-bottom: 20px;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-column a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-column a:hover {
+    color: var(--orange);
+  }
+  
+  .copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header-content nav {
+      display: none;
+    }
+    
+    .menu-icon {
+      display: block;
+    }
+    
+    .mobile-nav {
+      display: block;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  </style>
+  </head>
+  <body>
+    <header>
+      <div class="container header-content">
+        <img src="https://scontent.ffbm1-1.fna.fbcdn.net/v/t39.30808-6/462342512_122097460814564999_5841323514291771387_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGKWgywrcZScsRMuA_8Aklk26rmNFkyvEPbquY0WTK8Q3xOGEvwBlcmc6Wa1kUyJXGt1Rt5_cX-gk-sI6UztM5C&_nc_ohc=3CG2NzBHdCQQ7kNvgFV0Mci&_nc_zt=23&_nc_ht=scontent.ffbm1-1.fna&_nc_gid=AuWdZ7dpS4m9Tie0GZitCPX&oh=00_AYCmez8MY__r3kQr5H9-C0Y3nQmhW0bilu0w7sNFwQYmvA&oe=67211DD2" alt="logo" style="width:2.5rem;">
+        <nav>
+          <ul>
+            <li><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="#about-us"><i class="fas fa-users"></i> À propos</a></li>
+            <li><a href="./services.html"><i class="fas fa-briefcase"></i> Services</a></li>
+            <li><a href="./emploi.html"><i class="fas fa-search"></i> Emplois</a></li>
+            <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+          </ul>
+        </nav>
+        <div id="menu-icon" class="menu-icon">
+          &#9776;
+        </div>
+        <nav id="mobile-nav" class="mobile-nav">
+          <div class="close-icon" id="close-icon">&times;</div>
+          <ul>
+            <li><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="#about-us"><i class="fas fa-users"></i> À propos</a></li>
+            <li><a href="./services.html"><i class="fas fa-briefcase"></i> Services</a></li>
+            <li><a href="./emploi.html"><i class="fas fa-search"></i> Emplois</a></li>
+            <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+    <section class="hero" id="hero">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="hero-content animate">
+          <h1>Votre partenaire en recrutement multi-sectoriel</h1>
+          <p style="color: white;">Experts en sous-traitance pour des solutions de recrutement personnalisées pour tout type d'entreprise et votre accompagnateur dans la recherche d'emploi pour tout type de profil</p>
+          <a href="#contact-form" class="cta-button">Demander un partenariat </a>
+        </div>
+      </div>
+    </section>
+  
+    <section class="about-us" id="about-us">
+      <div class="container">
+        <div class="section-title">
+          <h2>À propos de nous</h2>
+        </div>
+        <div class="about-container">
+          <div class="about-left animate">
+            <p style="text-align: justify;">Nous sommes une entreprise spécialisée dans la sous-traitance, avec une expertise reconnue dans le recrutement multi-sectoriel. Notre mission est d'offrir des solutions de recrutement personnalisées qui répondent aux besoins spécifiques de chaque client. Nous accompagnons les entreprises en leur offrant des talents qualifiés, garantissant ainsi leur succès dans un environnement compétitif. <br> Nous permettons également à ceux qui sont à la recherche d'emploi d'avoir du travail rapidement dans une des nos entreprises partenaires.</p>
+            <a href="./formulaireDenvoiGS.html" class="cta-button">Déposez votre dossier</a>
+          </div>
+          <div class="about-right animate">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600" 
+                 alt="Professional team collaborating in modern office" 
+                 class="rounded-image"
+                 width="600" 
+                 height="400">
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Nos Services</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card animate">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400" 
+                 alt="Professional business team meeting" class="service-image">
+            <i class="fas fa-user-tie"></i>
+            <h3>Recrutement Permanent</h3>
+            <p>Solutions complètes pour vos besoins en recrutement à long terme.</p>
+            <a href="./formulaireDenvoiGS.html" class="cta-button">Déposez votre dossier</a>
+          </div>
+          <div class="service-card animate">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400" 
+                 alt="Flexible staffing solutions" class="service-image">
+            <i class="fas fa-clock"></i>
+            <h3>Intérim</h3>
+            <p>Flexibilité et rapidité pour vos besoins temporaires.</p>
+            <a href="./formulaireDenvoiGS.html" class="cta-button">Déposez votre dossier</a>
+          </div>
+          <div class="service-card animate">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400" 
+                 alt="Outsourcing services" class="service-image">
+            <i class="fas fa-handshake"></i>
+            <h3>Sous-traitance</h3>
+            <p>Gestion externalisée de vos ressources humaines.</p>
+            <a href="./formulaireDenvoiGS.html" class="cta-button">Déposez votre dossier</a>  
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="industries">
+      <div class="container">
+        <div class="section-title">
+          <h2>Secteurs d'Expertise</h2>
+        </div>
+        <div class="industries-grid">
+          <div class="industry-item">
+            <i class="fas fa-industry"></i>
+            <h3>Industrie</h3>
+          </div>
+          <div class="industry-item">
+            <i class="fas fa-building"></i>
+            <h3>BTP</h3>
+          </div>
+          <div class="industry-item">
+            <i class="fas fa-laptop-code"></i>
+            <h3>IT & Digital</h3>
+          </div>
+          <div class="industry-item">
+            <i class="fas fa-truck"></i>
+            <h3>Transport</h3>
+          </div>
+          <div class="industry-item">
+            <i class="fas fa-chart-line"></i>
+            <h3>Finance</h3>
+          </div>
+          <div class="industry-item">
+            <i class="fas fa-shopping-cart"></i>
+            <h3>Commerce</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h3>15+</h3>
+            <p>Années d'expérience</p>
+          </div>
+          <div class="stat-item">
+            <h3>1000+</h3>
+            <p>Placements réussis</p>
+          </div>
+          <div class="stat-item">
+            <h3>98%</h3>
+            <p>Satisfaction client</p>
+          </div>
+          <div class="stat-item">
+            <h3>50+</h3>
+            <p>Experts en recrutement</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h2>Témoignages</h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card animate">
+            <i class="fas fa-quote-left"></i>
+            <p>Le professionnalisme de Groupe Sage nous a permis de trouver rapidement les talents dont nous avions besoin.</p>
+            <div class="client">
+              <h4>Jean Dupont</h4>
+              <p>Directeur RH, Entreprise ABC</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="cta">
+      <div class="container">
+        <h2>Prêt à trouver les meilleurs talents ?</h2>
+        <a href="#contact-form" class="cta-button">Contactez-nous</a>
+      </div>
+    </section>
+  
+    <section class="contact-form" id="contact-form">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contactez-nous</h2>
+        </div>
+        <form action="" method="POST" class="animate">
+          <div class="form-group">
+            <label for="name">Nom:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="cta-button">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h4>Groupe Sage</h4>
+            <ul>
+              <li><a href="#about-us">À propos</a></li>
+              <li><a href="./services.html">Services</a></li>
+              <li><a href="./emploi.html">Emplois</a></li>
+              <li><a href="./contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="/services/recruitment">Recrutement Permanent</a></li>
+              <li><a href="/services/interim">Intérim</a></li>
+              <li><a href="/services/outsourcing">Sous-traitance</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Contact</h4>
+            <ul>
+              <li><i class="fas fa-phone"></i> +243 975 309 912</li>
+              <li><i class="fas fa-envelope"></i> contact@groupesage.com</li>
+              <li><i class="fas fa-map-marker-alt"></i> Lubumbashi,RDC</li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Suivez-nous</h4>
+            <ul>
+              <li><a href="https://linkedin.com/company/groupesage"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+              <li><a href="https://web.facebook.com/profile.php?id=61566949978748" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i> Facebook</a></li>
+              <li><a href="https://twitter.com/groupesage"><i class="fab fa-twitter"></i> Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2024 Groupe Sage. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+  
+    <button id="fixed-cta" onclick="window.location.href='./formulaireDenvoiGS.html'">Déposez votre dossier</button>
+  
+    <script>
+      // Hero section background image rotation
+      const heroSection = document.getElementById('hero');
+      const images = [
+        'https://images.unsplash.com/photo-1521791136064-7986c2920216',
+        'https://img.freepik.com/photos-gratuite/bouchent-concept-communaute-mains_23-2148931127.jpg?t=st=1730106558~exp=1730110158~hmac=802f564042b8dab3a4bc64c0815d61611aaa5c6225205532946b464b13022e44&w=1380',
+        'https://img.freepik.com/photos-gratuite/equipe-collegues-travaillant-documents-entreprise-faisant-travail-equipe-pour-analyser-documents-informations-recherche-ligne-planification-presentation-entreprise-graphiques-donnees-collaboration-au-travail_482257-49375.jpg?t=st=1730106821~exp=1730110421~hmac=68b7323c587bc2ff1df4fa4712de406a573c94a073e6159d5948170327d9a0ca&w=1380'
+      ];
+      let currentImageIndex = 0;
+  
+      function rotateBackground() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
+      }
+  
+      // Set initial background
+      heroSection.style.backgroundImage = `url(${images[0]})`;
+      // Rotate background every 5 seconds
+      setInterval(rotateBackground, 5000);
+  
+      // Mobile menu functionality
+      const menuIcon = document.getElementById('menu-icon');
+      const mobileNav = document.getElementById('mobile-nav');
+      const closeIcon = document.getElementById('close-icon');
+  
+      menuIcon.addEventListener('click', () => {
+        mobileNav.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+      });
+  
+      closeIcon.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+      });
+  
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (mobileNav.classList.contains('active') && 
+            !mobileNav.contains(e.target) && 
+            !menuIcon.contains(e.target)) {
+          mobileNav.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+  
+      // Animate elements on scroll
+      function animateOnScroll() {
+        const elements = document.querySelectorAll('.animate');
+        elements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      }
+  
+      window.addEventListener('scroll', animateOnScroll);
+      // Initial check for elements in view
+      animateOnScroll();
+    </script>
+  </body>
+  </html>

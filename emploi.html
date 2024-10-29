@@ -1,0 +1,669 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emplois | Groupe Sage - Solutions de Recrutement</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+    :root {
+      --green-light: #DAF0DD;
+      --green-dark: #064C1C;
+      --orange: #F68634;
+      --red: #EB4E1E;
+      --yellow: #FBC02D;
+      --blue: #1E88E5;
+      --text-glow-orange: 0 0 10px rgba(246, 134, 52, 0.5);
+      --box-glow-orange: 0 5px 15px rgba(246, 134, 52, 0.5);
+      --box-glow-red: 0 0 15px rgba(255, 94, 94, 0.5);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter Tight', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, var(--green-light), white);
+      color: var(--green-dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--orange);
+      text-decoration: none;
+      text-shadow: var(--text-glow-orange);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--green-dark);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: var(--orange);
+    }
+    
+    /* Jobs Page Specific Styles */
+    .jobs-hero {
+      padding: 150px 0 80px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+      color: white;
+    }
+    
+    .jobs-hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: var(--orange);
+      text-shadow: var(--text-glow-orange);
+    }
+    
+    .jobs-hero p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--yellow);
+    }
+    
+    /* Search and Filter Section */
+    .search-section {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      margin: -50px auto 50px;
+      max-width: 1000px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .search-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    
+    .search-input {
+      padding: 12px;
+      border: 2px solid var(--green-light);
+      border-radius: 8px;
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: var(--box-glow-orange);
+    }
+    
+    .search-button {
+      padding: 12px 30px;
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    
+    .search-button:hover {
+      background: var(--red);
+      box-shadow: var(--box-glow-red);
+    }
+    
+    /* Jobs Grid */
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 50px 0;
+    }
+    
+    .job-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-glow-orange);
+    }
+    
+    .job-header {
+      background: var(--green-dark);
+      color: white;
+      padding: 20px;
+    }
+    
+    .job-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: var(--orange);
+    }
+    
+    .job-company {
+      font-size: 16px;
+      color: var(--yellow);
+    }
+    
+    .job-content {
+      padding: 20px;
+    }
+    
+    .job-details {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    
+    .job-details li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: var(--green-dark);
+    }
+    
+    .job-details i {
+      color: var(--orange);
+      width: 20px;
+    }
+    
+    .apply-button {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      background: var(--orange);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    
+    .apply-button:hover {
+      background: var(--red);
+      box-shadow: var(--box-glow-red);
+    }
+    
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 50px 0;
+    }
+    
+    .page-button {
+      padding: 10px 15px;
+      background: white;
+      border: 2px solid var(--orange);
+      border-radius: 8px;
+      color: var(--orange);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .page-button:hover,
+    .page-button.active {
+      background: var(--orange);
+      color: white;
+    }
+    
+    /* Mobile Menu */
+    .menu-icon {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--green-dark);
+    }
+    
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--green-dark);
+      padding: 20px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 2000;
+    }
+    
+    .mobile-nav.active {
+      transform: translateX(0);
+    }
+    
+    .mobile-nav .close-icon {
+      color: white;
+      font-size: 24px;
+      text-align: right;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+    
+    .mobile-nav ul {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .mobile-nav a {
+      color: white;
+      font-size: 18px;
+      padding: 10px 0;
+    }
+    
+    .mobile-nav a:hover {
+      color: var(--orange);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-nav {
+        display: block;
+      }
+    
+      .search-form {
+        grid-template-columns: 1fr;
+      }
+      
+      .jobs-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .job-card {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--green-dark);
+      color: white;
+      padding: 60px 0 30px;
+      margin-top: 80px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h4 {
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--orange);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    </style>
+    </head>
+    <body>
+      <header>
+        <div class="container header-content">
+          <a href="/" class="logo">Groupe Sage</a>
+          <div id="menu-icon" class="menu-icon">
+            <i class="fas fa-bars"></i>
+          </div>
+          <nav class="desktop-nav">
+            <ul>
+              <li><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+              <li><a href="http://127.0.0.1:5500/index.html#about-us"><i class="fas fa-users"></i> À propos</a></li>
+              <li><a href="./services.html"><i class="fas fa-briefcase"></i> Services</a></li>
+              <li><a href="./emploi.html"><i class="fas fa-search"></i> Emplois</a></li>
+              <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    
+      <nav id="mobile-nav" class="mobile-nav">
+        <div class="close-icon" id="close-icon">
+          <i class="fas fa-times"></i>
+        </div>
+        <ul>
+          <li><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+          <li><a href="http://127.0.0.1:5500/index.html#about-us"><i class="fas fa-users"></i> À propos</a></li>
+          <li><a href="./services.html"><i class="fas fa-briefcase"></i> Services</a></li>
+          <li><a href="./emploi.html"><i class="fas fa-search"></i> Emplois</a></li>
+          <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+      </nav>
+    
+      <section class="jobs-hero">
+        <div class="container">
+          <h1 class="animate">Offres d'Emploi</h1>
+          <p class="animate">Trouvez l'opportunité qui correspond à vos ambitions professionnelles</p>
+        </div>
+      </section>
+    
+      <div class="container">
+        <section class="search-section animate">
+          <form class="search-form">
+            <input type="text" class="search-input" placeholder="Mots-clés (ex: security, commercial)">
+            <input type="text" class="search-input" placeholder="Lieu (ex: l'shi,kinshasa)">
+            <select class="search-input">
+              <option value="">Type de contrat</option>
+              <option value="cdi">CDI</option>
+              <option value="cdd">CDD</option>
+              <option value="interim">Intérim</option>
+              <option value="freelance">Freelance</option>
+            </select>
+            <button type="submit" class="search-button">
+              <i class="fas fa-search"></i> Rechercher
+            </button>
+          </form>
+        </section>
+    
+        <section class="jobs-grid">
+          <div class="job-card animate">
+            <div class="job-header">
+              <h3 class="job-title">Développeur Full Stack</h3>
+              <p class="job-company">Tech Solutions</p>
+            </div>
+            <div class="job-content">
+              <ul class="job-details">
+                <li><i class="fas fa-map-marker-alt"></i> Paris, France</li>
+                <li><i class="fas fa-clock"></i> CDI</li>
+                <li><i class="fas fa-euro-sign"></i> 45-55k€</li>
+                <li><i class="fas fa-calendar"></i> Début immédiat</li>
+              </ul>
+              <a href="./formulaireDenvoiGS.html" class="apply-button">Postuler</a>
+            </div>
+          </div>
+    
+          <div class="job-card animate">
+            <div class="job-header">
+              <h3 class="job-title">Commercial B2B</h3>
+              <p class="job-company">Global Sales</p>
+            </div>
+            <div class="job-content">
+              <ul class="job-details">
+                <li><i class="fas fa-map-marker-alt"></i> Lyon, France</li>
+                <li><i class="fas fa-clock"></i> CDI</li>
+                <li><i class="fas fa-euro-sign"></i> 35-45k€ + Com</li>
+                <li><i class="fas fa-calendar"></i> Début immédiat</li>
+              </ul>
+              <a href="./formulaireDenvoiGS.html" class="apply-button">Postuler</a>
+            </div>
+          </div>
+    
+          <div class="job-card animate">
+            <div class="job-header">
+              <h3 class="job-title">Chef de Projet Digital</h3>
+              <p class="job-company">Digital Agency</p>
+            </div>
+            <div class="job-content">
+              <ul class="job-details">
+                <li><i class="fas fa-map-marker-alt"></i> Bordeaux, France</li>
+                <li><i class="fas fa-clock"></i> CDI</li>
+                <li><i class="fas fa-euro-sign"></i> 40-50k€</li>
+                <li><i class="fas fa-calendar"></i> Début immédiat</li>
+              </ul>
+              <a href="./formulaireDenvoiGS.html" class="apply-button">Postuler</a>
+            </div>
+          </div>
+    
+          <div class="job-card animate">
+            <div class="job-header">
+              <h3 class="job-title">Ingénieur DevOps</h3>
+              <p class="job-company">Cloud Solutions</p>
+            </div>
+            <div class="job-content">
+              <ul class="job-details">
+                <li><i class="fas fa-map-marker-alt"></i> Remote, France</li>
+                <li><i class="fas fa-clock"></i> CDI</li>
+                <li><i class="fas fa-euro-sign"></i> 50-65k€</li>
+                <li><i class="fas fa-calendar"></i> Début immédiat</li>
+              </ul>
+              <a href="./formulaireDenvoiGS.html" class="apply-button">Postuler</a>
+            </div>
+          </div>
+    
+          <div class="job-card animate">
+            <div class="job-header">
+              <h3 class="job-title">Responsable Marketing Digital</h3>
+              <p class="job-company">E-commerce Leader</p>
+            </div>
+            <div class="job-content">
+              <ul class="job-details">
+                <li><i class="fas fa-map-marker-alt"></i> Nantes, France</li>
+                <li><i class="fas fa-clock"></i> CDI</li>
+                <li><i class="fas fa-euro-sign"></i> 45-55k€</li>
+                <li><i class="fas fa-calendar"></i> Début immédiat</li>
+              </ul>
+              <a href="./formulaireDenvoiGS.html" class="apply-button">Postuler</a>
+            </div>
+          </div>
+    
+          <div class="job-card animate">
+            <div class="job-header">
+              <h3 class="job-title">Data Analyst</h3>
+              <p class="job-company">Data Insights</p>
+            </div>
+            <div class="job-content">
+              <ul class="job-details">
+                <li><i class="fas fa-map-marker-alt"></i> Lille, France</li>
+                <li><i class="fas fa-clock"></i> CDI</li>
+                <li><i class="fas fa-euro-sign"></i> 38-48k€</li>
+                <li><i class="fas fa-calendar"></i> Début immédiat</li>
+              </ul>
+              <a href="./formulaireDenvoiGS.html" class="apply-button">Postuler</a>
+            </div>
+          </div>
+        </section>
+    
+        <div class="pagination">
+          <button class="page-button active">1</button>
+          <button class="page-button">2</button>
+          <button class="page-button">3</button>
+          <button class="page-button">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    
+      <footer>
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-column">
+              <h4>Groupe Sage</h4>
+              <ul> 
+                <li><a href="http://127.0.0.1:5500/index.html#about-us">À propos</a></li>
+                <li><a href="./services.html">Services</a></li>
+                <li><a href="./emploi.html">Emplois</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/services/recruitment">Recrutement Permanent</a></li>
+                <li><a href="/services/interim">Intérim</a></li>
+                <li><a href="/services/outsourcing">Sous-traitance</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Contact</h4>
+              <ul>
+                <li><i class="fas fa-phone"></i> +243 975 309 912</li>
+                <li><i class="fas fa-envelope"></i> contact@groupesage.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> Lubumbashi,RDC</li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Suivez-nous</h4>
+              <ul>
+                <li><a href="https://linkedin.com/company/groupesage"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                <li><a href="https://web.facebook.com/profile.php?id=61566949978748" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com/groupesage"><i class="fab fa-twitter"></i> Twitter</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="copyright">
+            <p>&copy; 2024 Groupe Sage. Tous droits réservés.</p>
+          </div>
+        </div>
+      </footer>
+    
+      <script>
+        // Animate elements on scroll
+        function animateOnScroll() {
+          const elements = document.querySelectorAll('.animate');
+          elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            if (elementTop < window.innerHeight - elementVisible) {
+              element.style.opacity = '1';
+              element.style.transform = 'translateY(0)';
+            }
+          });
+        }
+    
+        // Mobile menu functionality
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileNav = document.getElementById('mobile-nav');
+        const closeIcon = document.getElementById('close-icon');
+    
+        menuIcon.addEventListener('click', () => {
+          mobileNav.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+    
+        closeIcon.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+    
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (mobileNav.classList.contains('active') && 
+              !mobileNav.contains(e.target) && 
+              !menuIcon.contains(e.target)) {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+    
+        // Search form functionality
+        const searchForm = document.querySelector('.search-form');
+        searchForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          // Add search functionality here
+        });
+    
+        // Pagination functionality
+        const pageButtons = document.querySelectorAll('.page-button');
+        pageButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            pageButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            // Add pagination functionality here
+          });
+        });
+    
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial check for elements in view
+        animateOnScroll();
+      </script>
+    </body>
+    </html>

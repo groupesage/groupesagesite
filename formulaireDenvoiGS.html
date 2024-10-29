@@ -151,7 +151,7 @@ body {
   
   <div class="fee-notice">
     <i class="fas fa-info-circle"></i>
-    Frais de dépôt de dossiers: <strong>30$</strong>
+    Dépôt de dossiers: <strong>totalement gratuit</strong>
   </div>
   
   <form id="jobApplication"  method="POST">
@@ -166,22 +166,96 @@ body {
     </div>
     
     <div class="form-group">
-      <label for="profession"><i class="fas fa-briefcase"></i> Domaine de profession:</label>
-      <input type="text" id="profession" name="profession" required>
+      <label for="date"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+       Date de naissance:</label>
+      <input type="date" id="date" name="date_naissance" required>
     </div>
     
     <div class="form-group">
-      <label for="cv"><i class="fas fa-file-upload"></i> Téléchargez votre CV (PDF uniquement):</label>
+      <label for="lieu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+       lieu:</label>
+      <input type="text" id="lieu" name="lieu_naissance" required>
+    </div>
+
+    <div class="form-group">
+      <label for="address"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+      
+        <circle cx="12" cy="10" r="3" />
+      </svg> adressse physique:</label>
+      <input type="text" id="address" name="address" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"  stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-2.82 19.68 19.68 0 0 1-6-6A19.86 19.86 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72 13 13 0 0 0 .56 2.57 2 2 0 0 1-.45 2L8.09 9.91a16 16 0 0 0 6 6l1.62-1.62a2 2 0 0 1 2-.45 13 13 0 0 0 2.57.56A2 2 0 0 1 22 16.92z" />
+      </svg>
+       numéro de téléphone:</label>
+      <input type="tel" id="phone" name="phone" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6" />
+      </svg>
+      
+       email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="studylevel"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 7L12 12 2 7l10-5 10 5z" />
+        <path d="M2 7v6c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7" />
+        <path d="M12 22V12" />
+      </svg>
+      niveau d'étude:</label>
+      <select id="studylevel">
+        <option value="volvo">selctionnez votre niveau</option>
+        <option value="licensié">licensié</option>
+        <option value="gradué">gradué</option>
+        <option value="diplomé">diplomé</option>
+        <option value="certifié">certifié</option>
+        <option value="sans documents">sans documents</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="profession"><i class="fas fa-briefcase"></i> Dans quel domaine voulez-vous travailler?:</label>
+      <input type="text" id="profession" name="profession">
+    </div>
+    
+    <div class="form-group">
+      <label for="cv"><i class="fas fa-file-upload"></i> Téléchargez votre Photo</label>
+      <input type="file" id="picture" name="picture"  required>
+    </div>
+    
+    <div class="form-group">
+      <label for="cv"><i class="fas fa-file-upload"></i> Téléchargez votre CV (PDF uniquement,document obligatoire):</label>
       <input type="file" id="cv" name="cv" accept=".pdf" required>
     </div>
-    
+
     <div class="form-group">
-      <label for="num-docs"><i class="fas fa-file-alt"></i> Autres documents (nombre):</label>
-      <input type="number" id="num-docs" name="num_docs" min="0" max="5" value="0" required>
+      <label for="onem"><i class="fas fa-file-upload"></i> Téléchargez votre Carte ONEM (PDF uniquement, document obligatoire):</label>
+      <input type="file" id="onem" name="onem" accept=".pdf" required>
+    </div>
+
+    <div class="form-group">
+      <label for="inspection_du_travail"><i class="fas fa-file-upload"></i> Téléchargez votre document de l'inspection du travail (PDF uniquement,document obligatoire):</label>
+      <input type="file" id="inspection_du_travail" name="inspection_du_travail" accept=".pdf" required>
     </div>
     
     <div id="additional-docs"></div>
-    
+   
     <button type="submit" class="cta-button">
       <i class="fas fa-paper-plane"></i> Soumettre la Candidature
     </button>
@@ -189,91 +263,85 @@ body {
 </section>
 
 <script>
-document.getElementById('num-docs').addEventListener('change', function(e) {
-  const container = document.getElementById('additional-docs');
-  const numDocs = parseInt(this.value);
-  
-  container.innerHTML = '';
-  
-  for(let i = 0; i < numDocs; i++) {
-    const docGroup = document.createElement('div');
-    docGroup.className = 'form-group';
-    
-    const label = document.createElement('label');
-    label.innerHTML = `<i class="fas fa-file"></i> Document supplémentaire ${i + 1}:`;
-    label.htmlFor = `additional-doc-${i}`;
-    
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.id = `additional-doc-${i}`;
-    input.name = `additional_doc_${i}`;
-    input.required = true;
-    input.accept = '.pdf,.doc,.docx';
-    
-    docGroup.appendChild(label);
-    docGroup.appendChild(input);
-    container.appendChild(docGroup);
+
+
+document.getElementById('jobApplication').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Empêche le formulaire de se soumettre normalement
+
+  const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dzhxc1izm/upload"; // Remplacez par votre cloud_name Cloudinary
+  const uploadPreset = "groupesage"; // Remplacez par votre upload_preset Cloudinary
+
+  // Fonction pour uploader un fichier sur Cloudinary
+  async function uploadToCloudinary(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    const response = await fetch(cloudinaryUrl, {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+    return data.secure_url; // Retourne l'URL sécurisée du fichier uploadé
   }
+
+  // Téléchargez les fichiers et récupérez leurs URLs
+  const pictureFile = document.getElementById("picture").files[0];
+  const cvFile = document.getElementById("cv").files[0];
+  const onemFile = document.getElementById("onem").files[0];
+  const inspectionFile = document.getElementById("inspection_du_travail").files[0];
+
+  const pictureUrl = await uploadToCloudinary(pictureFile);
+  const cvUrl = await uploadToCloudinary(cvFile);
+  const onemUrl = await uploadToCloudinary(onemFile);
+  const inspectionUrl = await uploadToCloudinary(inspectionFile);
+
+  // Récupérez les valeurs des champs texte
+  const data = {
+    records: [
+      {
+        fields: {
+          "first_name": document.getElementById("first-name").value,
+          "last_name": document.getElementById("last-name").value,
+          "date_naissance": document.getElementById("date").value,
+          "lieu_naissance": document.getElementById("lieu").value,
+          "address": document.getElementById("address").value,
+          "phone": document.getElementById("phone").value,
+          "email": document.getElementById("email").value,
+          "studylevel": document.getElementById("studylevel").value,
+          "profession": document.getElementById("profession").value,
+          
+          // Ajoutez les URLs des fichiers
+          "picture": pictureUrl,
+          "cv": cvUrl,
+          "onem": onemUrl,
+          "inspection_du_travail": inspectionUrl
+        }
+      }
+    ]
+  };
+
+  // Envoyez les données et URLs à Airtable
+  fetch("https://api.airtable.com/v0/appJtYm2PMFmOC3Su/tblPFb0QT7KcXldWh", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer 9b75750143f847d236c7fdcc68e2830d6f8d4bf9c90071ba356144082ed7c4fe", // Remplacez par votre clé API Airtable
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(responseData => {
+    console.log("Succès :", responseData); // Affiche la réponse si succès
+    alert("La candidature a été soumise avec succès !");
+  })
+  .catch(error => {
+    console.error("Erreur :", error); // Affiche une erreur en cas d'échec
+    alert("Une erreur s'est produite lors de la soumission.");
+  });
 });
 
-document.getElementById('jobApplication').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Collect payment details from the form
-        // const name = document.getElementById('name').value;
-        // const surname = document.getElementById('surname').value;
-        // const email = document.getElementById('email').value;
-        // const phone = document.getElementById('phone').value;
-        // const amount = document.getElementById('amount').value;
-        // const mobileMoneyService = document.getElementById('channels').value;
-        // const currency = document.getElementById('currency').value;
-        // const address = document.getElementById('address').value;
-        // const city = document.getElementById('city').value;
-        // const country = document.getElementById('country').value;
-        // const state = document.getElementById('state').value;
-        // const zipCode = document.getElementById('zip').value;
-
-        
-        // CinetPay API Integration
-        CinetPay.setConfig({
-            apikey: '174642520866f4225499b325.33508508',  // Use your actual CinetPay API Key
-            site_id: '5880530', // Use your actual CinetPay Site ID
-            notify_url: 'https://websim.creationengine.blog/mirror-form/',
-            close_after_response: true,
-            mode: 'PRODUCTION'
-        });
-
-        CinetPay.getCheckout({
-            transaction_id: Math.floor(Math.random() * 100000000).toString(),
-            amount: 30,
-            currency: 'USD',
-            channels: 'MOBILE_MONEY',
-            description: 'Payment for services',
-            customer_name:"Joe",//Le nom du client
-                customer_surname:"Down",//Le prenom du client
-                customer_email: "down@test.com",//l'email du client
-                customer_phone_number: "088767611",//l'email du client
-                customer_address : "BP 0024",//addresse du client
-                customer_city: "Antananarivo",// La ville du client
-                customer_country : "CM",// le code ISO du pays
-                customer_state : "CM",// le code ISO l'état
-                customer_zip_code : "06510",
-        });
-
-        CinetPay.waitResponse(function(data) {
-            if (data.status == "REFUSED") {
-                alert("Your payment failed.");
-                window.location.reload();
-            } else if (data.status == "ACCEPTED") {
-                alert("Payment successful!");
-                window.location.reload();
-            }
-        });
-
-        CinetPay.onError(function(data) {
-            console.error("Error: ", data);
-        });
-    });
 </script>
 
 </body></html>

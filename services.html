@@ -1,0 +1,668 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Groupe Sage - Solutions de Recrutement</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+    :root {
+      --green-light: #DAF0DD;
+      --green-dark: #064C1C;
+      --orange: #F68634;
+      --red: #EB4E1E;
+      --yellow: #FBC02D;
+      --blue: #1E88E5;
+      --text-glow-orange: 0 0 10px rgba(246, 134, 52, 0.5);
+      --box-glow-orange: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 5px 15px rgba(246, 134, 52, 0.5);
+      --box-glow-red: 0 0 15px rgba(255, 94, 94, 0.5);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter Tight', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, var(--green-light), white);
+      color: var(--green-dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--orange);
+      text-decoration: none;
+      text-shadow: var(--text-glow-orange);
+    }
+    
+    .menu-icon {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--green-dark);
+    }
+    
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--green-dark);
+      padding: 20px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 2000;
+    }
+    
+    .mobile-nav.active {
+      transform: translateX(0);
+    }
+    
+    .mobile-nav .close-icon {
+      color: white;
+      font-size: 24px;
+      text-align: right;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+    
+    .mobile-nav ul {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .mobile-nav a {
+      color: white;
+      font-size: 18px;
+      padding: 10px 0;
+    }
+    
+    .mobile-nav a:hover {
+      color: var(--orange);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--green-dark);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: var(--orange);
+    }
+    
+    /* Services Page Specific Styles */
+    .services-hero {
+      padding: 150px 0 80px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+      color: white;
+    }
+    
+    .services-hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: var(--orange);
+      text-shadow: var(--text-glow-orange);
+    }
+    
+    .services-hero p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--yellow);
+    }
+    
+    .services-grid {
+      padding: 80px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-glow-orange);
+    }
+    
+    .service-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    
+    .service-content {
+      padding: 30px;
+    }
+    
+    .service-content h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--green-dark);
+    }
+    
+    .service-content p {
+      margin-bottom: 20px;
+      color: #666;
+    }
+    
+    .service-features {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    
+    .service-features li {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green-dark);
+    }
+    
+    .service-features i {
+      color: var(--orange);
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 15px 30px;
+      background: var(--orange);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      text-align: center;
+      width: 100%;
+      box-shadow: var(--box-glow-orange);
+    }
+    
+    .cta-button:hover {
+      background: var(--red);
+      box-shadow: var(--box-glow-red);
+    }
+    
+    /* Industries Section */
+    .industries {
+      padding: 80px 0;
+      background: var(--green-dark);
+      color: white;
+    }
+    
+    .industries h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--orange);
+    }
+    
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    
+    .industry-item {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .industry-item:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
+    }
+    
+    .industry-item i {
+      font-size: 40px;
+      color: var(--yellow);
+      margin-bottom: 15px;
+    }
+    
+    /* Process Section */
+    .process {
+      padding: 80px 0;
+    }
+    
+    .process h2 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .step-card {
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 auto 20px;
+    }
+    
+    /* Contact Section */
+    .contact-cta {
+      padding: 80px 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--green-light), white);
+    }
+    
+    .contact-cta h2 {
+      margin-bottom: 30px;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-nav {
+        display: block;
+      }
+    
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .service-card {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--green-dark);
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h4 {
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--orange);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    </style>
+    </head>
+    <body>
+      <header>
+        <div class="container header-content">
+          <a href="/" class="logo">Groupe Sage</a>
+          <div id="menu-icon" class="menu-icon">
+            <i class="fas fa-bars"></i>
+          </div>
+          <nav class="desktop-nav">
+            <ul>
+              <li><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+              <li><a href="http://127.0.0.1:5500/index.html#about-us"><i class="fas fa-users"></i> À propos</a></li>
+              <li><a href="./services.html"><i class="fas fa-briefcase"></i> Services</a></li>
+              <li><a href="./emploi.html"><i class="fas fa-search"></i> Emplois</a></li>
+              <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      
+      <nav id="mobile-nav" class="mobile-nav">
+        <div class="close-icon" id="close-icon">
+          <i class="fas fa-times"></i>
+        </div>
+        <ul>
+          <li><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+          <li><a href="http://127.0.0.1:5500/index.html#about-us"><i class="fas fa-users"></i> À propos</a></li>
+          <li><a href="./services.html"><i class="fas fa-briefcase"></i> Services</a></li>
+          <li><a href="./emploi.html"><i class="fas fa-search"></i> Emplois</a></li>
+          <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+      </nav>
+    
+      <section class="services-hero">
+        <div class="container">
+          <h1 class="animate">Nos Services</h1>
+          <p class="animate">Des solutions de recrutement sur mesure pour répondre à tous vos besoins en ressources humaines</p>
+        </div>
+      </section>
+    
+      <section class="services">
+        <div class="container">
+          <div class="services-grid">
+            <div class="service-card animate">
+              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800" 
+                   alt="Professional recruitment service" 
+                   class="service-image"
+                   width="800"
+                   height="250">
+              <div class="service-content">
+                <h3>Recrutement Permanent</h3>
+                <p>Solutions complètes pour vos besoins en recrutement à long terme avec une approche personnalisée.</p>
+                <ul class="service-features">
+                  <li><i class="fas fa-check-circle"></i> Analyse approfondie des besoins</li>
+                  <li><i class="fas fa-check-circle"></i> Sélection rigoureuse des candidats</li>
+                  <li><i class="fas fa-check-circle"></i> Accompagnement post-recrutement</li>
+                  <li><i class="fas fa-check-circle"></i> Garantie de placement</li>
+                </ul>
+                <a href="/contact?service=permanent" class="cta-button">Demander un devis</a>
+              </div>
+            </div>
+    
+            <div class="service-card animate">
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800" 
+                   alt="Temporary staffing solutions" 
+                   class="service-image"
+                   width="800"
+                   height="250">
+              <div class="service-content">
+                <h3>Intérim</h3>
+                <p>Flexibilité et rapidité pour vos besoins temporaires en personnel qualifié.</p>
+                <ul class="service-features">
+                  <li><i class="fas fa-check-circle"></i> Réactivité maximale</li>
+                  <li><i class="fas fa-check-circle"></i> Personnel qualifié disponible</li>
+                  <li><i class="fas fa-check-circle"></i> Gestion administrative complète</li>
+                  <li><i class="fas fa-check-circle"></i> Suivi personnalisé</li>
+                </ul>
+                <a href="/contact?service=interim" class="cta-button">Demander un devis</a>
+              </div>
+            </div>
+    
+            <div class="service-card animate">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800" 
+                   alt="Outsourcing and consulting services" 
+                   class="service-image"
+                   width="800"
+                   height="250">
+              <div class="service-content">
+                <h3>Sous-traitance & Conseil</h3>
+                <p>Solutions d'externalisation complètes pour optimiser vos ressources humaines.</p>
+                <ul class="service-features">
+                  <li><i class="fas fa-check-circle"></i> Gestion de projets</li>
+                  <li><i class="fas fa-check-circle"></i> Expertise sectorielle</li>
+                  <li><i class="fas fa-check-circle"></i> Optimisation des coûts</li>
+                  <li><i class="fas fa-check-circle"></i> Reporting détaillé</li>
+                </ul>
+                <a href="/contact?service=outsourcing" class="cta-button">Demander un devis</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="industries">
+        <div class="container">
+          <h2>Nos Secteurs d'Expertise</h2>
+          <div class="industries-grid animate">
+            <div class="industry-item">
+              <i class="fas fa-industry"></i>
+              <h3>Industrie</h3>
+              <p>Production, Maintenance, Qualité</p>
+            </div>
+            <div class="industry-item">
+              <i class="fas fa-building"></i>
+              <h3>BTP</h3>
+              <p>Construction, Génie Civil, Architecture</p>
+            </div>
+            <div class="industry-item">
+              <i class="fas fa-laptop-code"></i>
+              <h3>IT & Digital</h3>
+              <p>Développement, Cybersécurité, Data</p>
+            </div>
+            <div class="industry-item">
+              <i class="fas fa-truck"></i>
+              <h3>Transport</h3>
+              <p>Logistique, Supply Chain</p>
+            </div>
+            <div class="industry-item">
+              <i class="fas fa-chart-line"></i>
+              <h3>Finance</h3>
+              <p>Comptabilité, Audit, Contrôle de gestion</p>
+            </div>
+            <div class="industry-item">
+              <i class="fas fa-shopping-cart"></i>
+              <h3>Commerce</h3>
+              <p>Vente, Marketing, Communication</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="process">
+        <div class="container">
+          <h2>Notre Processus</h2>
+          <div class="process-steps animate">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h3>Analyse des Besoins</h3>
+              <p>Étude approfondie de vos besoins et objectifs spécifiques</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h3>Sourcing</h3>
+              <p>Recherche et sélection des meilleurs profils</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h3>Évaluation</h3>
+              <p>Tests et entretiens approfondis des candidats</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <h3>Intégration</h3>
+              <p>Accompagnement complet dans le processus d'intégration</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="contact-cta">
+        <div class="container">
+          <h2>Prêt à collaborer avec nous ?</h2>
+          <a href="./contact.html" class="cta-button">Contactez-nous</a>
+        </div>
+      </section>
+    
+      <footer>
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-column">
+              <h4>Groupe Sage</h4>
+              <ul>
+              <li><a href="http://127.0.0.1:5500/index.html#about-us">À propos</a></li>
+              <li><a href="./services.html">Services</a></li>
+              <li><a href="./emploi.html">Emplois</a></li>
+              <li><a href="./contact.html">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/services/recruitment">Recrutement Permanent</a></li>
+                <li><a href="/services/interim">Intérim</a></li>
+                <li><a href="/services/outsourcing">Sous-traitance</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Contact</h4>
+              <ul>
+                <li><i class="fas fa-phone"></i> +243 975 309 912</li>
+                <li><i class="fas fa-envelope"></i> contact@groupesage.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> Lubumbashi,RDC</li>
+              </ul>
+            </div>
+            <div class="footer-column">localhost
+              <h4>Suivez-nous</h4>
+              <ul>
+                <li><a href="https://linkedin.com/company/groupesage"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                <li><a href="https://web.facebook.com/profile.php?id=61566949978748"  target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://twitter.com/groupesage"><i class="fab fa-twitter"></i> Twitter</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="copyright">
+            <p>&copy; 2024 Groupe Sage. Tous droits réservés.</p>
+          </div>
+        </div>
+      </footer>
+    
+      <script>
+        // Animate elements on scroll
+        function animateOnScroll() {
+          const elements = document.querySelectorAll('.animate');
+          elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            if (elementTop < window.innerHeight - elementVisible) {
+              element.style.opacity = '1';
+              element.style.transform = 'translateY(0)';
+            }
+          });
+        }
+    
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileNav = document.getElementById('mobile-nav');
+        const closeIcon = document.getElementById('close-icon');
+    
+        menuIcon.addEventListener('click', () => {
+          mobileNav.classList.add('active');
+          document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+        });
+    
+        closeIcon.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          document.body.style.overflow = ''; // Restore scrolling
+        });
+    
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (mobileNav.classList.contains('active') && 
+              !mobileNav.contains(e.target) && 
+              !menuIcon.contains(e.target)) {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+    
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial check for elements in view
+        animateOnScroll();
+      </script>
+    </body>
+    </html>
