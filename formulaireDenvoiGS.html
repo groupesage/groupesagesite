@@ -256,7 +256,7 @@ body {
     
     <div id="additional-docs"></div>
    
-    <button type="submit" class="cta-button">
+    <button type="button" class="cta-button" id="btnsubmit">
       <i class="fas fa-paper-plane"></i> Soumettre la Candidature
     </button>
   </form>
@@ -265,8 +265,7 @@ body {
 <script>
 
 
-document.getElementById('jobApplication').addEventListener('submit', async function(event) {
-  event.preventDefault(); // Empêche le formulaire de se soumettre normalement
+document.getElementById('btnsubmit').addEventListener('click', async function(event) {
 
   const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dzhxc1izm/upload"; // Remplacez par votre cloud_name Cloudinary
   const uploadPreset = "groupesage"; // Remplacez par votre upload_preset Cloudinary
@@ -299,37 +298,32 @@ document.getElementById('jobApplication').addEventListener('submit', async funct
 
   // Récupérez les valeurs des champs texte
   const data = {
-    records: [
-      {
-        fields: {
-          "first_name": document.getElementById("first-name").value,
-          "last_name": document.getElementById("last-name").value,
-          "date_naissance": document.getElementById("date").value,
-          "lieu_naissance": document.getElementById("lieu").value,
-          "address": document.getElementById("address").value,
-          "phone": document.getElementById("phone").value,
-          "email": document.getElementById("email").value,
-          "studylevel": document.getElementById("studylevel").value,
-          "profession": document.getElementById("profession").value,
-          
-          // Ajoutez les URLs des fichiers
-          "picture": pictureUrl,
-          "cv": cvUrl,
-          "onem": onemUrl,
-          "inspection_du_travail": inspectionUrl
-        }
-      }
-    ]
-  };
+    first_name: document.getElementById("first-name").value,
+    last_name: document.getElementById("last-name").value,
+    date_naissance: document.getElementById("date").value,
+    lieu_naissance: document.getElementById("lieu").value,
+    address: document.getElementById("address").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    studylevel: document.getElementById("studylevel").value,
+    profession: document.getElementById("profession").value,
+    picture: pictureUrl,
+    cv: cvUrl,
+    onem: onemUrl,
+    inspection_du_travail: inspectionUrl
+};
+
+console.log(data)
+
 
   // Envoyez les données et URLs à Airtable
-  fetch("https://api.airtable.com/v0/appJtYm2PMFmOC3Su/tblPFb0QT7KcXldWh", {
+  fetch("http://localhost:3000/candidatures/Add", {
     method: "POST",
+    body: JSON.stringify(data),
     headers: {
-      "Authorization": "Bearer 9b75750143f847d236c7fdcc68e2830d6f8d4bf9c90071ba356144082ed7c4fe", // Remplacez par votre clé API Airtable
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
+    "Content-Type": "application/json",
+  },
+
   })
   .then(response => response.json())
   .then(responseData => {
