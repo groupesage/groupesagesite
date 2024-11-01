@@ -264,25 +264,31 @@ body {
 
 <script>
 
-
 document.getElementById('btnsubmit').addEventListener('click', async function(event) {
+  // Configuration de Bytescale
+  const accountId = "W142iqm"; // Remplace par ton ID de compte Bytescale
+  const apiKey = "public_W142iqmBBnjLZ2MEgCVNRSzciKzC"; // Remplace par ta clé API publique Bytescale
+  const bytescaleUrl = `https://api.bytescale.com/v2/accounts/${accountId}/uploads/form_data`;
 
-  const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dzhxc1izm/upload"; // Remplacez par votre cloud_name Cloudinary
-  const uploadPreset = "groupesage"; // Remplacez par votre upload_preset Cloudinary
-
-  // Fonction pour uploader un fichier sur Cloudinary
-  async function uploadToCloudinary(file) {
+  // Fonction pour uploader un fichier sur Bytescale
+  async function uploadToBytescale(file) {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", uploadPreset);
 
-    const response = await fetch(cloudinaryUrl, {
+    const response = await fetch(bytescaleUrl, {
       method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`
+      },
       body: formData
     });
 
     const data = await response.json();
-    return data.secure_url; // Retourne l'URL sécurisée du fichier uploadé
+    if (data.files && data.files[0].fileUrl) {
+      return data.files[0].fileUrl; // Retourne l'URL sécurisée du fichier uploadé
+    } else {
+      throw new Error("Erreur lors de l'upload sur Bytescale");
+    }
   }
 
   // Téléchargez les fichiers et récupérez leurs URLs
@@ -291,50 +297,56 @@ document.getElementById('btnsubmit').addEventListener('click', async function(ev
   const onemFile = document.getElementById("onem").files[0];
   const inspectionFile = document.getElementById("inspection_du_travail").files[0];
 
-  const pictureUrl = await uploadToCloudinary(pictureFile);
-  const cvUrl = await uploadToCloudinary(cvFile);
-  const onemUrl = await uploadToCloudinary(onemFile);
-  const inspectionUrl = await uploadToCloudinary(inspectionFile);
+  try {
+    const pictureUrl = await uploadToBytescale(pictureFile);
+    const cvUrl = await uploadToBytescale(cvFile);
+    const onemUrl = await uploadToBytescale(onemFile);
+    const inspectionUrl = await uploadToBytescale(inspectionFile);
 
-  // Récupérez les valeurs des champs texte
-  const data = {
-    first_name: document.getElementById("first-name").value,
-    last_name: document.getElementById("last-name").value,
-    date_naissance: document.getElementById("date").value,
-    lieu_naissance: document.getElementById("lieu").value,
-    address: document.getElementById("address").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    studylevel: document.getElementById("studylevel").value,
-    profession: document.getElementById("profession").value,
-    picture: pictureUrl,
-    cv: cvUrl,
-    onem: onemUrl,
-    inspection_du_travail: inspectionUrl
-};
+    // Récupérez les valeurs des champs texte
+    const data = {
+      first_name: document.getElementById("first-name").value,
+      last_name: document.getElementById("last-name").value,
+      date_naissance: document.getElementById("date").value,
+      lieu_naissance: document.getElementById("lieu").value,
+      address: document.getElementById("address").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      studylevel: document.getElementById("studylevel").value,
+      profession: document.getElementById("profession").value,
+      picture: pictureUrl,
+      cv: cvUrl,
+      onem: onemUrl,
+      inspection_du_travail: inspectionUrl
+    };
 
-console.log(data)
+    console.log(data);
 
+    // Envoyez les données et URLs à votre backend
+    fetch("http://localhost:3000/candidatures/Add", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then(response => response.json())
+    .then(responseData => {
+      console.log("Succès :", responseData); // Affiche la réponse si succès
+      alert("La candidature a été soumise avec succès !");
+    })
+    .catch(error => {
+      console.error("Erreur :", error); // Affiche une erreur en cas d'échec
+      alert("Une erreur s'est produite lors de la soumission.");
+    });
 
-  // Envoyez les données et URLs à Airtable
-  fetch("http://localhost:3000/candidatures/Add", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-    "Content-Type": "application/json",
-  },
-
-  })
-  .then(response => response.json())
-  .then(responseData => {
-    console.log("Succès :", responseData); // Affiche la réponse si succès
-    alert("La candidature a été soumise avec succès !");
-  })
-  .catch(error => {
-    console.error("Erreur :", error); // Affiche une erreur en cas d'échec
-    alert("Une erreur s'est produite lors de la soumission.");
-  });
+  } catch (error) {
+    console.error("Erreur d'upload :", error);
+    alert("Une erreur s'est produite lors de l'upload des fichiers.");
+  }
 });
+
+
 
 </script>
 
