@@ -248,13 +248,6 @@ body {
       <label for="onem"><i class="fas fa-file-upload"></i> Téléchargez votre Carte ONEM (PDF uniquement, document obligatoire):</label>
       <input type="file" id="onem" name="onem" accept=".pdf" required>
     </div>
-
-    <div class="form-group">
-      <label for="inspection_du_travail"><i class="fas fa-file-upload"></i> Téléchargez votre document de l'inspection du travail (PDF uniquement,document obligatoire):</label>
-      <input type="file" id="inspection_du_travail" name="inspection_du_travail" accept=".pdf" required>
-    </div>
-    
-    <div id="additional-docs"></div>
    
     <button type="button" class="cta-button" id="btnsubmit">
       <i class="fas fa-paper-plane"></i> Soumettre la Candidature
@@ -295,13 +288,11 @@ document.getElementById('btnsubmit').addEventListener('click', async function(ev
   const pictureFile = document.getElementById("picture").files[0];
   const cvFile = document.getElementById("cv").files[0];
   const onemFile = document.getElementById("onem").files[0];
-  const inspectionFile = document.getElementById("inspection_du_travail").files[0];
 
   try {
     const pictureUrl = await uploadToBytescale(pictureFile);
     const cvUrl = await uploadToBytescale(cvFile);
     const onemUrl = await uploadToBytescale(onemFile);
-    const inspectionUrl = await uploadToBytescale(inspectionFile);
 
     // Récupérez les valeurs des champs texte
     const data = {
@@ -317,13 +308,12 @@ document.getElementById('btnsubmit').addEventListener('click', async function(ev
       picture: pictureUrl,
       cv: cvUrl,
       onem: onemUrl,
-      inspection_du_travail: inspectionUrl
     };
 
     console.log(data);
 
     // Envoyez les données et URLs à votre backend
-    fetch("http://localhost:3000/candidatures/Add", {
+    fetch("http://82.112.242.58:3000/candidatures/Add", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
