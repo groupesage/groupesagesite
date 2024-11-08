@@ -1,343 +1,380 @@
 <html><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdn.cinetpay.com/seamless/main.js"></script>
-<title>Formulaire de Candidature Professionnel</title>
-
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9ed 100%);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-#application-form {
-  width: 100%;
-  max-width: 800px;
-  padding: 40px;
-  background-color: #DAF0DD;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-#application-form h2 {
-  color: #064C1C;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  text-align: center;
-  position: relative;
-}
-
-#application-form h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: #5BA8FF;
-  border-radius: 2px;
-}
-
-.form-group {
-  margin-bottom: 25px;
-  position: relative;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: #064C1C;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.form-group i {
-  margin-right: 8px;
-  color: #5BA8FF;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 12px 15px;
-  border: 2px solid #5BA8FF;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  background: white;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #F68634;
-  box-shadow: 0 0 0 3px rgba(246, 134, 52, 0.2);
-}
-
-.form-group input[type="file"] {
-  padding: 8px;
-  background: white;
-  cursor: pointer;
-}
-
-.fee-notice {
-  background: rgba(235, 78, 30, 0.1);
-  color: #EB4E1E;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 20px 0;
-  font-weight: 500;
-  text-align: center;
-}
-
-.cta-button {
-  width: 100%;
-  background-color: #F68634;
-  color: white;
-  padding: 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 20px;
-}
-
-.cta-button:hover {
-  background-color: #EB4E1E;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(235, 78, 30, 0.3);
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-
-.error {
-  border-color: #EB4E1E !important;
-  animation: shake 0.3s ease-in-out;
-}
-
-@media (max-width: 600px) {
-  #application-form {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+  <title>Formulaire de Candidature Professionnel</title>
+  
+  <style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9ed 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
   }
   
-  #application-form h2 {
-    font-size: 1.5rem;
+  #application-form {
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    background-color: #DAF0DD;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
-}
-</style>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-
-<section id="application-form">
-  <h2>Formulaire de Candidature</h2>
   
-  <div class="fee-notice">
-    <i class="fas fa-info-circle"></i>
-    Dépôt de dossiers: <strong>totalement gratuit</strong>
-  </div>
+  #application-form h2 {
+    color: #064C1C;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+  }
   
-  <form id="jobApplication"  method="POST">
-    <div class="form-group">
-      <label for="first-name"><i class="fas fa-user"></i> Prénom:</label>
-      <input type="text" id="first-name" name="first_name" required>
-    </div>
+  #application-form h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #5BA8FF;
+    border-radius: 2px;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+    position: relative;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #064C1C;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .form-group i {
+    margin-right: 8px;
+    color: #5BA8FF;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #5BA8FF;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #F68634;
+    box-shadow: 0 0 0 3px rgba(246, 134, 52, 0.2);
+  }
+  
+  .form-group input[type="file"] {
+    padding: 8px;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .fee-notice {
+    background: rgba(235, 78, 30, 0.1);
+    color: #EB4E1E;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  .cta-button {
+    width: 100%;
+    background-color: #F68634;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .cta-button:hover {
+    background-color: #EB4E1E;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(235, 78, 30, 0.3);
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  .error {
+    border-color: #EB4E1E !important;
+    animation: shake 0.3s ease-in-out;
+  }
+  
+  @media (max-width: 600px) {
+    #application-form {
+      padding: 20px;
+    }
     
-    <div class="form-group">
-      <label for="last-name"><i class="fas fa-user"></i> Post-nom:</label>
-      <input type="text" id="last-name" name="last_name" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="date"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-        <line x1="16" y1="2" x2="16" y2="6"/>
-        <line x1="8" y1="2" x2="8" y2="6"/>
-        <line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-       Date de naissance:</label>
-      <input type="date" id="date" name="date_naissance" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="lieu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/>
-        <circle cx="12" cy="10" r="3"/>
-      </svg>
-       lieu:</label>
-      <input type="text" id="lieu" name="lieu_naissance" required>
-    </div>
-
-    <div class="form-group">
-      <label for="address"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-      
-        <circle cx="12" cy="10" r="3" />
-      </svg> adressse physique:</label>
-      <input type="text" id="address" name="address" required>
-    </div>
-
-    <div class="form-group">
-      <label for="phone"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"  stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-2.82 19.68 19.68 0 0 1-6-6A19.86 19.86 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72 13 13 0 0 0 .56 2.57 2 2 0 0 1-.45 2L8.09 9.91a16 16 0 0 0 6 6l1.62-1.62a2 2 0 0 1 2-.45 13 13 0 0 0 2.57.56A2 2 0 0 1 22 16.92z" />
-      </svg>
-       numéro de téléphone:</label>
-      <input type="tel" id="phone" name="phone" required>
-    </div>
-
-    <div class="form-group">
-      <label for="email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6" />
-      </svg>
-      
-       email:</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="studylevel"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 7L12 12 2 7l10-5 10 5z" />
-        <path d="M2 7v6c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7" />
-        <path d="M12 22V12" />
-      </svg>
-      niveau d'étude:</label>
-      <select id="studylevel">
-        <option value="volvo">selctionnez votre niveau</option>
-        <option value="licensié">licensié</option>
-        <option value="gradué">gradué</option>
-        <option value="diplomé">diplomé</option>
-        <option value="certifié">certifié</option>
-        <option value="sans documents">sans documents</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-      <label for="profession"><i class="fas fa-briefcase"></i> Dans quel domaine voulez-vous travailler?:</label>
-      <input type="text" id="profession" name="profession">
-    </div>
-    
-    <div class="form-group">
-      <label for="cv"><i class="fas fa-file-upload"></i> Téléchargez votre Photo</label>
-      <input type="file" id="picture" name="picture"  required>
-    </div>
-    
-    <div class="form-group">
-      <label for="cv"><i class="fas fa-file-upload"></i> Téléchargez votre CV (PDF uniquement,document obligatoire):</label>
-      <input type="file" id="cv" name="cv" accept=".pdf" required>
-    </div>
-
-    <div class="form-group">
-      <label for="onem"><i class="fas fa-file-upload"></i> Téléchargez votre Carte ONEM (PDF uniquement, document obligatoire):</label>
-      <input type="file" id="onem" name="onem" accept=".pdf" required>
-    </div>
-   
-    <button type="button" class="cta-button" id="btnsubmit">
-      <i class="fas fa-paper-plane"></i> Soumettre la Candidature
-    </button>
-  </form>
-</section>
-
-<script>
-
-document.getElementById('btnsubmit').addEventListener('click', async function(event) {
-  // Configuration de Bytescale
-  const accountId = "W142iqm"; // Remplace par ton ID de compte Bytescale
-  const apiKey = "public_W142iqmBBnjLZ2MEgCVNRSzciKzC"; // Remplace par ta clé API publique Bytescale
-  const bytescaleUrl = `https://api.bytescale.com/v2/accounts/${accountId}/uploads/form_data`;
-
-  // Fonction pour uploader un fichier sur Bytescale
-  async function uploadToBytescale(file) {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const response = await fetch(bytescaleUrl, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${apiKey}`
-      },
-      body: formData
-    });
-
-    const data = await response.json();
-    if (data.files && data.files[0].fileUrl) {
-      return data.files[0].fileUrl; // Retourne l'URL sécurisée du fichier uploadé
-    } else {
-      throw new Error("Erreur lors de l'upload sur Bytescale");
+    #application-form h2 {
+      font-size: 1.5rem;
     }
   }
-
-  // Téléchargez les fichiers et récupérez leurs URLs
-  const pictureFile = document.getElementById("picture").files[0];
-  const cvFile = document.getElementById("cv").files[0];
-  const onemFile = document.getElementById("onem").files[0];
-
-  try {
-    const pictureUrl = await uploadToBytescale(pictureFile);
-    const cvUrl = await uploadToBytescale(cvFile);
-    const onemUrl = await uploadToBytescale(onemFile);
-
-    // Récupérez les valeurs des champs texte
-    const data = {
-      first_name: document.getElementById("first-name").value,
-      last_name: document.getElementById("last-name").value,
-      date_naissance: document.getElementById("date").value,
-      lieu_naissance: document.getElementById("lieu").value,
-      address: document.getElementById("address").value,
-      phone: document.getElementById("phone").value,
-      email: document.getElementById("email").value,
-      studylevel: document.getElementById("studylevel").value,
-      profession: document.getElementById("profession").value,
-      picture: pictureUrl,
-      cv: cvUrl,
-      onem: onemUrl,
-    };
-
-    console.log(data);
-
-    // Envoyez les données et URLs à votre backend
-    fetch("http://82.112.242.58:3000/candidatures/Add", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      }
-    })
-    .then(response => response.json())
-    .then(responseData => {
-      console.log("Succès :", responseData); // Affiche la réponse si succès
-      alert("La candidature a été soumise avec succès !");
-    })
-    .catch(error => {
-      console.error("Erreur :", error); // Affiche une erreur en cas d'échec
-      alert("Une erreur s'est produite lors de la soumission.");
-    });
-
-  } catch (error) {
-    console.error("Erreur d'upload :", error);
-    alert("Une erreur s'est produite lors de l'upload des fichiers.");
+  
+  /* Loader */
+  #loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index:30;
   }
-});
-
-
-
-</script>
-
-</body></html>
+  
+  #loader .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #5BA8FF;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  </style>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  </head>
+  <body>
+      <div id="loader">
+    <div class="spinner"></div>
+  </div>
+  
+  <section id="application-form">
+    <h2>Formulaire de Candidature</h2>
+    
+    <div class="fee-notice">
+      <i class="fas fa-info-circle"></i>
+      Dépôt de dossiers: <strong>totalement gratuit</strong>
+    </div>
+    
+    <form id="jobApplication"  method="POST">
+      <div class="form-group">
+        <label for="first-name"><i class="fas fa-user"></i> Prénom:</label>
+        <input type="text" id="first-name" name="first_name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="last-name"><i class="fas fa-user"></i> Post-nom:</label>
+        <input type="text" id="last-name" name="last_name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="date"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+         Date de naissance:</label>
+        <input type="date" id="date" name="date_naissance" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="lieu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+         lieu:</label>
+        <input type="text" id="lieu" name="lieu_naissance" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="address"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+        
+          <circle cx="12" cy="10" r="3" />
+        </svg> adressse physique:</label>
+        <input type="text" id="address" name="address" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="phone"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"  stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-2.82 19.68 19.68 0 0 1-6-6A19.86 19.86 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72 13 13 0 0 0 .56 2.57 2 2 0 0 1-.45 2L8.09 9.91a16 16 0 0 0 6 6l1.62-1.62a2 2 0 0 1 2-.45 13 13 0 0 0 2.57.56A2 2 0 0 1 22 16.92z" />
+        </svg>
+         numéro de téléphone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+        
+         email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="studylevel"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5BA8FF" width="1.3rem" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 7L12 12 2 7l10-5 10 5z" />
+          <path d="M2 7v6c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7" />
+          <path d="M12 22V12" />
+        </svg>
+        niveau d'étude:</label>
+        <select id="studylevel">
+          <option value="volvo">selctionnez votre niveau</option>
+          <option value="licensié">licensié</option>
+          <option value="gradué">gradué</option>
+          <option value="diplomé">diplomé</option>
+          <option value="certifié">certifié</option>
+          <option value="sans documents">sans documents</option>
+          </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="profession"><i class="fas fa-briefcase"></i> Dans quel domaine voulez-vous travailler?:</label>
+        <input type="text" id="profession" name="profession">
+      </div>
+      
+      <div class="form-group">
+        <label for="cv"><i class="fas fa-file-upload"></i> Téléchargez votre Photo</label>
+        <input type="file" id="picture" name="picture"  required>
+      </div>
+      
+      <div class="form-group">
+        <label for="cv"><i class="fas fa-file-upload"></i> Téléchargez votre CV (PDF uniquement,document obligatoire):</label>
+        <input type="file" id="cv" name="cv" accept=".pdf" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="onem"><i class="fas fa-file-upload"></i> Téléchargez votre Carte ONEM (PDF uniquement, document obligatoire):</label>
+        <input type="file" id="onem" name="onem" accept=".pdf" required>
+      </div>
+     
+      <button type="button" class="cta-button" id="btnsubmit">
+        <i class="fas fa-paper-plane"></i> Soumettre la Candidature
+      </button>
+    </form>
+  </section>
+  
+  <script>
+  
+  document.getElementById('btnsubmit').addEventListener('click', async function(event) {
+       document.getElementById('loader').style.display = 'flex';
+    // Configuration de Bytescale
+    const accountId = "W142iqm"; // Remplace par ton ID de compte Bytescale
+    const apiKey = "public_W142iqmBBnjLZ2MEgCVNRSzciKzC"; // Remplace par ta clé API publique Bytescale
+      const bytescaleUrl = `https://api.bytescale.com/v2/accounts/${accountId}/uploads/form_data`;
+  
+    // Fonction pour uploader un fichier sur Bytescale
+    async function uploadToBytescale(file) {
+      const formData = new FormData();
+      formData.append("file", file);
+  
+      const response = await fetch(bytescaleUrl, {
+        method: "POST",
+        headers: {
+          "Authorization":` Bearer ${apiKey}`
+        },
+        body: formData
+      });
+  
+      const data = await response.json();
+      if (data.files && data.files[0].fileUrl) {
+        return data.files[0].fileUrl; // Retourne l'URL sécurisée du fichier uploadé
+      } else {
+        throw new Error("Erreur lors de l'upload sur Bytescale");
+      }
+    }
+  
+    // Téléchargez les fichiers et récupérez leurs URLs
+    const pictureFile = document.getElementById("picture").files[0];
+    const cvFile = document.getElementById("cv").files[0];
+    const onemFile = document.getElementById("onem").files[0];
+  
+    try {
+      const pictureUrl = await uploadToBytescale(pictureFile);
+      const cvUrl = await uploadToBytescale(cvFile);
+      const onemUrl = await uploadToBytescale(onemFile);
+  
+      // Récupérez les valeurs des champs texte
+      const data = {
+        first_name: document.getElementById("first-name").value,
+        last_name: document.getElementById("last-name").value,
+        date_naissance: document.getElementById("date").value,
+        lieu_naissance: document.getElementById("lieu").value,
+        address: document.getElementById("address").value,
+        phone: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+        studylevel: document.getElementById("studylevel").value,
+        profession: document.getElementById("profession").value,
+        picture: pictureUrl,
+        cv: cvUrl,
+        onem: onemUrl,
+      };
+  
+      console.log(data);
+  
+      // Envoyez les données et URLs à votre backend
+      fetch("https://backendgs-u2wr.onrender.com/candidatures/Add", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      .then(response => response.json())
+      .then(responseData => {
+        console.log("Succès :", responseData); // Affiche la réponse si succès
+        alert("La candidature a été soumise avec succès !");
+      })
+      .catch(error => {
+        console.error("Erreur :", error); // Affiche une erreur en cas d'échec
+        alert("Une erreur s'est produite lors de la soumission.");
+      })
+      .finally(() => {
+        // Hide loader after request
+        document.getElementById('loader').style.display = 'none';
+      });
+  
+    } catch (error) {
+      console.error("Erreur d'upload :", error);
+      alert("Une erreur s'est produite lors de l'upload des fichiers.");
+      document.getElementById('loader').style.display = 'none'; 
+    }
+  });
+  
+  
+  
+  </script>
+  
+  </body></html>
