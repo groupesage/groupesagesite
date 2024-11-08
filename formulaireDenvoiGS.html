@@ -303,7 +303,7 @@
       const response = await fetch(bytescaleUrl, {
         method: "POST",
         headers: {
-          "Authorization":` Bearer ${apiKey}`
+          "Authorization":`Bearer ${apiKey}`
         },
         body: formData
       });
@@ -344,28 +344,37 @@
   
       console.log(data);
   
-      // Envoyez les données et URLs à votre backend
-      fetch("https://backendgs-u2wr.onrender.com/candidatures/Add", {
+      // Envoi des données et des URLs à votre backend
+ fetch("https://backendgs-u2wr.onrender.com/candidatures/Add", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         }
       })
-      .then(response => response.json())
-      .then(responseData => {
-        console.log("Succès :", responseData); // Affiche la réponse si succès
-        alert("La candidature a été soumise avec succès !");
-      })
-      .catch(error => {
-        console.error("Erreur :", error); // Affiche une erreur en cas d'échec
-        alert("Une erreur s'est produite lors de la soumission.");
-      })
-      .finally(() => {
-        // Hide loader after request
-        document.getElementById('loader').style.display = 'none';
-      });
-  
+        .then(response => {
+          // Vérification du statut de la réponse
+          if (!response.ok) {
+            // Si le statut HTTP indique une erreur (non 2xx)
+            throw new Error('Échec de la soumission, statut ' + response.status);
+          }
+          return response.json();
+        })
+        .then(result => {
+          // Traitez le résultat ici si la requête est réussie
+          console.log("Réponse du serveur :", result);
+          alert("La soumission a réussi !"); // Message de succès
+        })
+        .catch(error => {
+          // Affiche l'erreur dans la console et un message à l'utilisateur
+          console.error("Erreur :", error);
+          alert("Une erreur s'est produite lors de la soumission.");
+        })
+        .finally(() => {
+          // Hide loader after request
+          document.getElementById('loader').style.display = 'none';
+        });
+
     } catch (error) {
       console.error("Erreur d'upload :", error);
       alert("Une erreur s'est produite lors de l'upload des fichiers.");
